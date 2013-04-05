@@ -17,17 +17,56 @@ public class User
 
 	private Authority authority;
 
+	private String firstname;
+
+	private String lastname;
+
+	private String alias;
+
 	public User()
 	{
 		super();
 	}
 
-	public User(String username, String password, Authority authority)
+	public User(String username, String password, Authority authority, String firstname, String lastname, String alias)
 	{
 		super();
 		this.username = username;
 		this.password = password;
 		this.authority = authority;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.alias = alias;
+	}
+
+	public String getFirstname()
+	{
+		return firstname;
+	}
+
+	public void setFirstname(String firstname)
+	{
+		this.firstname = firstname;
+	}
+
+	public String getLastname()
+	{
+		return lastname;
+	}
+
+	public void setLastname(String lastname)
+	{
+		this.lastname = lastname;
+	}
+
+	public String getAlias()
+	{
+		return alias;
+	}
+
+	public void setAlias(String alias)
+	{
+		this.alias = alias;
 	}
 
 	public String getUsername()

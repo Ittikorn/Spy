@@ -1,5 +1,7 @@
 package com.spy.app.dao;
 
+import java.util.List;
+
 import com.spy.app.model.User;
 
 /**
@@ -16,4 +18,6 @@ public interface UserDao
 	public User findByUsername(String username);
 
 	public int count();
+
+	public List<User> findAll();
 }

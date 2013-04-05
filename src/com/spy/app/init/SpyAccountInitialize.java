@@ -22,7 +22,7 @@ public class SpyAccountInitialize
 	{
 		if (userService.count() == 0)
 		{
-			userService.create(new User("admin", "passworD1", Authority.ROLE_ADMIN));
+			userService.create(new User("admin", "passworD1", Authority.ROLE_ADMIN, "James", "Bond", "007"));
 		}
 	}
 }

@@ -31,7 +31,7 @@ public class SpyDatabaseInitialize
 
 		maps.put(
 				"USER",
-				"CREATE TABLE `USER` (`username` char(30) NOT NULL DEFAULT '',`password` char(255) NOT NULL DEFAULT '',`authority` int(11) NOT NULL,PRIMARY KEY (`username`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+				"CREATE TABLE `USER` (`username` char(30) NOT NULL DEFAULT '',`password` char(255) NOT NULL DEFAULT '',`authority` int(11) NOT NULL,`firstname` char(30) NOT NULL DEFAULT '',`lastname` char(30) NOT NULL DEFAULT '',`alias` char(30) NOT NULL DEFAULT '',PRIMARY KEY (`username`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
 	}
 
 	public void init()

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -53,7 +55,8 @@ public class UserDaoImpl implements UserDao
 			if (rs.next())
 			{
 				user = new User(rs.getString("username"), rs.getString("password"), AuthorityDto.getAuthority(rs
-						.getInt("authority")));
+						.getInt("authority")), rs.getString("firstname"), rs.getString("lastname"),
+						rs.getString("alias"));
 			}
 
 			rs.close();
@@ -88,8 +91,11 @@ public class UserDaoImpl implements UserDao
 		Assert.notNull(user.getUsername());
 		Assert.notNull(user.getPassword());
 		Assert.notNull(user.getAuthority());
+		Assert.notNull(user.getFirstname());
+		Assert.notNull(user.getLastname());
+		Assert.notNull(user.getAlias());
 
-		String sql = "INSERT INTO `USER` (`username`, `password`, `authority`) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO `USER` (`username`, `password`, `authority`, `firstname`, `lastname`, `alias`) VALUES (?, ?, ?, ?, ?, ?);";
 
 		Connection connection = null;
 		boolean isSuccess = false;
@@ -100,6 +106,9 @@ public class UserDaoImpl implements UserDao
 			ps.setString(1, user.getUsername());
 			ps.setString(2, PasswordUtility.getMD5(user.getPassword()));
 			ps.setInt(3, user.getAuthority().getRole());
+			ps.setString(4, user.getFirstname());
+			ps.setString(5, user.getLastname());
+			ps.setString(6, user.getAlias());
 
 			isSuccess = ps.execute();
 
@@ -170,5 +179,49 @@ public class UserDaoImpl implements UserDao
 		}
 
 		return count;
+	}
+
+	@Override
+	public List<User> findAll()
+	{
+		String query = "SELECT * FROM USER";
+
+		Connection connection = null;
+		List<User> userList = new ArrayList<User>();
+		try
+		{
+			connection = dataSource.getConnection();
+			PreparedStatement ps = connection.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next())
+			{
+				userList.add(new User(rs.getString("username"), rs.getString("password"), AuthorityDto.getAuthority(rs
+						.getInt("authority")), rs.getString("firstname"), rs.getString("lastname"), rs
+						.getString("alias")));
+			}
+
+			rs.close();
+			ps.close();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if (connection != null)
+			{
+				try
+				{
+					connection.close();
+				}
+				catch (SQLException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return userList;
 	}
 }

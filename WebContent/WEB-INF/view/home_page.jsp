@@ -32,7 +32,7 @@ body {
         <div class="nav-collapse collapse">
           <ul class="nav">
             <li class="active">
-              <a href="#management">Management</a>
+              <a href="<%=request.getContextPath()%>/user">Management</a>
             </li>
             <li>
               <a href="#about">Mission</a>

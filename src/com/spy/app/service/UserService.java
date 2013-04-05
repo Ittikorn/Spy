@@ -41,6 +41,11 @@ public class UserService implements UserDetailsService
 		return userDao.count();
 	}
 
+	public List<User> findAll()
+	{
+		return userDao.findAll();
+	}
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
 	{
