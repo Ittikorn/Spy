@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <import resource="spring-data-source.xml" />
+   <import resource="spring-service.xml" />
+
+   <bean id="spyDBInit" class="com.spy.app.init.SpyDatabaseInitialize"
+      init-method="init">
+      <property name="dataSource" ref="dataSource" />
+      <property name="create" value="true" />
+   </bean>
+
+   <bean id="spyAccout" class="com.spy.app.init.SpyAccountInitialize"
+      init-method="init" />
+
+</beans>
