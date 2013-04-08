@@ -80,4 +80,19 @@ public class UserService implements UserDetailsService
 		return authList;
 	}
 
+	public boolean deleteByUsername(String username)
+	{
+		return userDao.deleteByUsername(username);
+	}
+
+	public boolean updateProfile(String username, String firstname, String lastname, String alias)
+	{
+		User user = findByUsername(username);
+
+		user.setFirstname(firstname);
+		user.setLastname(lastname);
+		user.setAlias(alias);
+
+		return userDao.update(user);
+	}
 }

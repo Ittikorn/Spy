@@ -15,9 +15,13 @@ public interface UserDao
 {
 	public boolean create(User user);
 
+	public boolean deleteByUsername(String username);
+	
 	public User findByUsername(String username);
 
 	public int count();
 
 	public List<User> findAll();
+	
+	public boolean update(User user);
 }

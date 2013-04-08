@@ -28,17 +28,14 @@ body {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="#">Spy</a>
+        <a class="brand" href="<%=request.getContextPath()%>">Spy</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
             <li class="active">
-              <a href="<%=request.getContextPath()%>/user">Management</a>
+              <a href="<%=request.getContextPath()%>/user">User</a>
             </li>
             <li>
-              <a href="#about">Mission</a>
-            </li>
-            <li>
-              <a href="#contact">Contact</a>
+              <a href="<%=request.getContextPath()%>/mission">Mission</a>
             </li>
             <li>
               <a href="<%=request.getContextPath()%>/logout">Logout</a>

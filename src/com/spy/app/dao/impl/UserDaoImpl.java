@@ -224,4 +224,98 @@ public class UserDaoImpl implements UserDao
 
 		return userList;
 	}
+
+	@Override
+	public boolean deleteByUsername(String username)
+	{
+		Assert.notNull(username);
+
+		String sql = "DELETE FROM USER WHERE USERNAME = ?";
+
+		Connection connection = null;
+		boolean isSuccess = false;
+		try
+		{
+			connection = dataSource.getConnection();
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, username);
+
+			isSuccess = ps.execute();
+
+			ps.close();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if (connection != null)
+			{
+				try
+				{
+					connection.close();
+				}
+				catch (SQLException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return isSuccess;
+	}
+
+	@Override
+	public boolean update(User user)
+	{
+		Assert.notNull(user);
+		Assert.notNull(user.getUsername());
+		Assert.notNull(user.getPassword());
+		Assert.notNull(user.getAuthority());
+		Assert.notNull(user.getFirstname());
+		Assert.notNull(user.getLastname());
+		Assert.notNull(user.getAlias());
+
+		String sql = "UPDATE USER SET USERNAME = ?, PASSWORD = ?, AUTHORITY = ?, FIRSTNAME = ?, LASTNAME = ?, ALIAS = ? WHERE USERNAME = ?";
+
+		Connection connection = null;
+		boolean isSuccess = false;
+		try
+		{
+			connection = dataSource.getConnection();
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setString(1, user.getUsername());
+			ps.setString(2, user.getPassword());
+			ps.setInt(3, user.getAuthority().getRole());
+			ps.setString(4, user.getFirstname());
+			ps.setString(5, user.getLastname());
+			ps.setString(6, user.getAlias());
+			ps.setString(7, user.getUsername());
+
+			isSuccess = ps.execute();
+
+			ps.close();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if (connection != null)
+			{
+				try
+				{
+					connection.close();
+				}
+				catch (SQLException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return isSuccess;
+	}
 }

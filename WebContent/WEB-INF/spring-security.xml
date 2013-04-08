@@ -16,9 +16,9 @@
       <form-login login-page="/login" />
       <logout logout-url="/logout" />
    </http>
-   <beans:bean id="customUserDetailsService" class="com.spy.app.service.UserService" />
+   <beans:import resource="spring-service.xml" />
    <authentication-manager>
-      <authentication-provider user-service-ref="customUserDetailsService">
+      <authentication-provider user-service-ref="userService">
          <password-encoder hash="md5">
             <salt-source system-wide="mysaltvalue" />
          </password-encoder>

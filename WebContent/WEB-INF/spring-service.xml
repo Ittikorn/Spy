@@ -4,5 +4,6 @@
    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
    <bean id="userService" class="com.spy.app.service.UserService" />
+   <bean id="missionService" class="com.spy.app.service.MissionService" />
 
 </beans>
