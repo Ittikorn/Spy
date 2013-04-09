@@ -12,6 +12,12 @@ import com.spy.app.model.Mission;
 import com.spy.app.service.MissionService;
 import com.spy.app.service.UserService;
 
+/**
+ * 
+ * @author Krittanan.Pingclasai
+ * @version 3.4.2013.0
+ * 
+ */
 @Controller
 @RequestMapping("/mission*")
 public class MissionController
@@ -42,7 +48,7 @@ public class MissionController
 
 		model.addAttribute("missionList", missionService.findAll());
 		model.addAttribute("userList", userService.findAll());
-		
+
 		return "/mission/management";
 	}
 
@@ -55,7 +61,7 @@ public class MissionController
 
 		model.addAttribute("missionList", missionService.findAll());
 		model.addAttribute("userList", userService.findAll());
-		
+
 		return "/mission/management";
 	}
 }

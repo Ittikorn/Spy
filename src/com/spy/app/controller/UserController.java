@@ -13,6 +13,13 @@ import com.spy.app.service.MissionService;
 import com.spy.app.service.UserService;
 import com.spy.app.utility.Authority;
 
+/**
+ * 
+ * @author Krittanan.Pingclasai
+ * @version 3.4.2013.0
+ * 
+ */
+
 @Controller
 @RequestMapping("/user*")
 public class UserController

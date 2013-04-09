@@ -4,6 +4,13 @@ import java.util.List;
 
 import com.spy.app.model.Mission;
 
+/**
+ * 
+ * @author Krittanan.Pingclasai
+ * @version 3.4.2013.0
+ * 
+ */
+
 public interface MissionDao
 {
 	public boolean create(Mission mission);
