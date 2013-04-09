@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.spy.app.dao.UserDao;
 import com.spy.app.model.User;
 import com.spy.app.utility.Authority;
+import com.spy.app.utility.PasswordUtility;
 
 /**
  * 
@@ -28,6 +29,8 @@ public class UserService implements UserDetailsService
 
 	public void create(User user)
 	{
+		user.setPassword(PasswordUtility.getMD5(user.getPassword()));
+
 		userDao.create(user);
 	}
 
@@ -92,6 +95,15 @@ public class UserService implements UserDetailsService
 		user.setFirstname(firstname);
 		user.setLastname(lastname);
 		user.setAlias(alias);
+
+		return userDao.update(user);
+	}
+
+	public boolean updatePassword(String username, String password)
+	{
+		User user = findByUsername(username);
+
+		user.setPassword(PasswordUtility.getMD5(password));
 
 		return userDao.update(user);
 	}

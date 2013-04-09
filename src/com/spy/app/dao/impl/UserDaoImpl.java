@@ -14,7 +14,6 @@ import org.springframework.util.Assert;
 import com.spy.app.dao.UserDao;
 import com.spy.app.dto.AuthorityDto;
 import com.spy.app.model.User;
-import com.spy.app.utility.PasswordUtility;
 
 /**
  * 
@@ -104,7 +103,7 @@ public class UserDaoImpl implements UserDao
 			connection = dataSource.getConnection();
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setString(1, user.getUsername());
-			ps.setString(2, PasswordUtility.getMD5(user.getPassword()));
+			ps.setString(2, user.getPassword());
 			ps.setInt(3, user.getAuthority().getRole());
 			ps.setString(4, user.getFirstname());
 			ps.setString(5, user.getLastname());

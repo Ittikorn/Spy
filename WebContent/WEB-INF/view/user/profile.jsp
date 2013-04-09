@@ -4,6 +4,7 @@
   pageEncoding="UTF-8"%>
 <c:url value="/user" var="user_url" />
 <c:url value="/user/update/profile" var="update_profile_url" />
+<c:url value="/user/update/password" var="update_password_url" />
 <html>
 <head>
 <title>Spy</title>
@@ -54,6 +55,8 @@ body {
     </div>
   </div>
   <div class="container">
+    <h1>${user.username } / ${user.alias }</h1>
+    <br />
     <ul class="nav nav-tabs">
       <li class="active">
         <a href="#profile" data-toggle="tab">Profile</a>
@@ -88,11 +91,12 @@ body {
         </form>
       </div>
       <div class="tab-pane fade" id="password">
-        <form id="tab2">
+        <form id="tab2" method="post" action="${update_password_url }">
           <label>Old Password</label>
-          <input type="password" class="input-xlarge">
+          <input type="password" class="input-xlarge" name="old_password">
           <label>New Password</label>
-          <input type="password" class="input-xlarge">
+          <input type="password" class="input-xlarge" name="new_password">
+          <input type="hidden" name="username"  value="${user.username }"/>
           <div>
             <br />
             <button class="btn btn-primary">Update</button>

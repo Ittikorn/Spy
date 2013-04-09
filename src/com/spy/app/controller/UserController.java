@@ -12,6 +12,7 @@ import com.spy.app.model.User;
 import com.spy.app.service.MissionService;
 import com.spy.app.service.UserService;
 import com.spy.app.utility.Authority;
+import com.spy.app.utility.PasswordUtility;
 
 /**
  * 
@@ -89,6 +90,28 @@ public class UserController
 		String alias = request.getParameter("alias");
 
 		userService.updateProfile(username, firstname, lastname, alias);
+
+		model.addAttribute("user", userService.findByUsername(username));
+		model.addAttribute("missionList", missionService.findByUsername(username));
+
+		return "/user/profile";
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "update/password")
+	public String updateUserPassowrd(HttpServletRequest request, ModelMap model)
+	{
+		String username = request.getParameter("username");
+
+		User user = userService.findByUsername(username);
+		if (user != null)
+		{
+			String oldPassword = request.getParameter("old_password");
+			if (user.getPassword().equals(PasswordUtility.getMD5(oldPassword)))
+			{
+				String newPassword = request.getParameter("new_password");
+				userService.updatePassword(username, newPassword);
+			}
+		}
 
 		model.addAttribute("user", userService.findByUsername(username));
 		model.addAttribute("missionList", missionService.findByUsername(username));
