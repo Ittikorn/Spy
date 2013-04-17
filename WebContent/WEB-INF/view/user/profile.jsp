@@ -73,7 +73,7 @@ body {
         <form id="tab1" method="post" action="${update_profile_url }">
           <label>Username</label>
           <input type="text" value="${user.username }"
-            class="input-xlarge" disabled="disabled" >
+            class="input-xlarge" disabled="disabled">
           <label>First Name</label>
           <input type="text" value="${user.firstname }"
             class="input-xlarge" name="firstname">
@@ -87,16 +87,18 @@ body {
             <br />
             <button class="btn btn-primary">Update</button>
           </div>
-          <input type="hidden" name="username"  value="${user.username }"/>
+          <input type="hidden" name="username" value="${user.username }" />
         </form>
       </div>
       <div class="tab-pane fade" id="password">
         <form id="tab2" method="post" action="${update_password_url }">
           <label>Old Password</label>
-          <input type="password" class="input-xlarge" name="old_password">
+          <input type="password" class="input-xlarge"
+            name="old_password">
           <label>New Password</label>
-          <input type="password" class="input-xlarge" name="new_password">
-          <input type="hidden" name="username"  value="${user.username }"/>
+          <input type="password" class="input-xlarge"
+            name="new_password">
+          <input type="hidden" name="username" value="${user.username }" />
           <div>
             <br />
             <button class="btn btn-primary">Update</button>
@@ -124,5 +126,6 @@ body {
         </table>
       </div>
     </div>
+  </div>
 </body>
 </html>
